@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Presto</title>
+
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link th:href="@{/stylesheets/presto.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container" layout:fragment="content"></div>
+    <script src="/webjars/popper.js/umd/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<!--    TODO: Check with webjars version -->
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+    <script th:src="@{/js/presto.js}"></script>
+    <script th:src="@{/js/ws.js}"></script>
+    <th:block layout:fragment="scripts"></th:block>
+</body>
+</html>

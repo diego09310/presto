@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<body>
+    <div layout:fragment="content">
+        <div><i class="bi-person-fill"></i> <th:block id="playerName" th:text="${playerData.name}" /></div>
+        <div><i class="bi-people-fill"></i> <th:block id="teamName" th:text="${playerData.teamName}" /></div>
+        <span id="playerId" class="hidden" th:text="${playerData.playerId}" />
+        <span id="teamId" class="hidden" th:text="${playerData.teamId}" />
+        <div th:replace="~{fragments/teams}"></div>
+    </div>
+
+    <th:block layout:fragment="scripts">
+        <script th:src="@{/js/waitingRoom.js}"></script>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <link th:href="@{/stylesheets/spotifyLogin.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div layout:fragment="content">
+        <form action="/host/spotifyLogin" method="post">
+            <input type="submit" class="btn-spotify" value="Acceder a Spotify" >
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <link th:href="@{/stylesheets/button.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="user-info">
+            <div><i class="bi-person-fill"></i> <th:block id="playerName" th:text="${playerData.name}" /></div>
+            <div><i class="bi-people-fill"></i> <th:block id="teamName" th:text="${playerData.teamName}" /></div>
+        </div>
+        <span id="playerId" class="hidden" th:text="${playerData.playerId}" />
+        <span id="teamId" class="hidden" th:text="${playerData.teamId}" />
+        <div class="buzz-btn-container">
+            <button id="buzz" class="btn btn-primary btn-full disable-dbl-tap-zoom"></button>
+            <div id="clicked" class="hidden">Clicked!</div>
+        </div>
+        <div class="podio">
+            <h2>Podio</h2>
+            <div id="buzzers"></div>
+        </div>
+    </div>
+    <th:block layout:fragment="scripts">
+        <script th:src="@{/js/button.js}"></script>
+    </th:block>
+</body>
+</html>

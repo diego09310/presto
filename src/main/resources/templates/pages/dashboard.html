@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <link th:href="@{/stylesheets/dashboard.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div id="teams-control" class="element mb-3">
+            <div th:replace="~{fragments/teams}"></div>
+            <form id="addTeamForm" class="row align-items-center">
+                <div class="col-auto">
+                    <input type="text" id="teamName" class="form-control" placeholder="Equipo" required />
+                </div>
+                <div class="col-auto">
+                    <input type="submit" id="addTeam" class="btn btn-primary" value="Añadir" />
+                </div>
+            </form>
+        </div>
+        <div id="game-control" class="element mb-3">
+            <h2>Juego</h2>
+            <div class="flex-wrapper">
+                <div id="game-controls">
+                    <button id="game-start" class="btn btn-success">Empezar</button>
+                    <!-- <button id="game-pause" class="btn btn-secondary">Pausa</button> -->
+                </div>
+                <div id="buzzers"></div>
+            </div>
+        </div>
+
+        <div id="spotify-control" class="element mb-3">
+            <h2>Música</h2>
+            <div th:if="${spotify == null}">Spotify no está reproduciendo nada</div>
+            <div th:unless="${spotify == null}" class="spotify-wrapper">
+                <input type="checkbox" id="hide-spotify" />
+                <label id="hide-spotify-label" for="hide-spotify" style="width: 300px"><i class="bi-eye-slash-fill"></i></label>
+                <label id="show-spotify-label" for="hide-spotify" style="width: 300px"><i class="bi-eye-fill"></i></label>
+                <div id="spotify-info">
+                    <img id="cover" th:src="${spotify.cover}" />
+                    <div id="song-name" th:text="${spotify.song}"></div>
+                    <div id="artist" th:text="${spotify.artist}"></div>
+                </div>
+                <div class="controls">
+                    <button id="prev-song" class="btn-sm"><i class="bi-rewind"></i></button>
+                    <button id="play-pause-song" class="btn-sm"><i th:class="${spotify.playState == T(diego09310.presto.data.PlayState).PLAYING}? 'bi-pause' : 'bi-play'"></i></button>
+                    <button id="next-song" class="btn-sm"><i class="bi-fast-forward"></i></button>
+                </div>
+                <select id="playlists" class="form-select">
+                    <th:block th:each="playlist : ${playlists}">
+                        <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+        </div>
+
+    </div>
+    <th:block layout:fragment="scripts">
+        <script src="https://sdk.scdn.co/spotify-player.js"></script>
+        <script th:src="@{/js/dashboard.js}"></script>
+    </th:block>
+</body>
+</html>

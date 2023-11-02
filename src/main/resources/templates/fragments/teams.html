@@ -1,0 +1,19 @@
+<div class="teams-wrapper mb-3">
+    <h2>Equipos</h2>
+    <div id="teams" class="teams">
+        <th:block th:each="team : ${teams}">
+            <div class="team">
+                <div class="teams-header">
+                    <span th:text="${team.name}"></span>
+                    <span th:if="${host}"><button class="delete-button" th:attr="data-teamId=${team.id}"><i class="bi-trash"></i></button></span>
+                </div>
+                <th:block th:each="player : ${team.players}">
+                    <div class="player-name">
+                        <span th:text="${player.name}"></span>
+                        <span th:if="${host}"><button class="delete-button" th:attr="data-playerId=${player.id},data-teamId=${team.id}"><i class="bi-trash"></i></button></span>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </div>    
+</div>

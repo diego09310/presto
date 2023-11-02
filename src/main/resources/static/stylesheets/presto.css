@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+}
+
+input[type=text] {
+    border-radius: 3px;
+}
+
+.container {
+    margin-top: 10px;
+    /* min-height: calc(100vh - 20px); */
+}
+
+.element {
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.teams-wrapper {
+    margin-top: 10px;
+}
+
+.teams {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #fff;
+}
+
+.team {
+    flex: 1;
+    min-height: 100px;
+}
+
+.team > .teams-header {
+    font-weight: bold;
+    background-color: black;
+    color: #eee;
+    /* border: 0 solid #555;
+    border-width: medium 0; */
+}
+
+.team > div {
+    padding: 10px;
+    /* border: 0 solid #555;
+    border-width: thin 0; */
+}
+
+.header {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}

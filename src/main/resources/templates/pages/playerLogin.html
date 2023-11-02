@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <link th:href="@{/stylesheets/playerLogin.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div layout:fragment="content">
+        <form action="login" method="post">
+            <div class="form-floating">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" required>
+                <label for="name">Nombre</label>
+            </div>
+            <h4>Equipo</h4>
+            <div id="teams" class="btn-group-vertical">
+                <th:block th:each="team : ${teams}">
+                    <input type="radio" name="teamId" class="btn-check" th:id="${team.id}" th:value="${team.id}" required>
+                    <label th:for="${team.id}" class="btn btn-outline-dark" th:text="${team.name}"></label>
+                </th:block>
+            </div>
+            <input type="submit" class="btn btn-success" value="Empezar" />
+        </form>
+    </div>
+    <script layout:fragment="scripts">
+        function handleWebSocketMessage(type, data) {
+            console.log("type: " + type + ", data: " + JSON.stringify(data));
+            if (type === "newTeam") {
+                const input =
+                    `<input type="radio" name="teamId" class="btn-check" id="${data.id}" value="${data.id}" required>
+                     <label for="${data.id}" class="btn btn-outline-dark">${data.name}</label>`
+                document.getElementById("teams").innerHTML += input;
+            }
+        }
+    </script>
+</body>
+</html>

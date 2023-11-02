@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    check-template-location: true
+    cache: false
+    prefix: file:./src/main/resources/templates/
+  config:
+    import: optional:file:.env[.properties]
+
+server:
+  port: 4000
