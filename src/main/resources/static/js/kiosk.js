@@ -5,13 +5,19 @@ function handleWebSocketMessage(type, data) {
             displayBuzzResults(data);
             break;
         case 'game':
-            if (data === "start") {
-                clearBuzzers();
-            }
-            break;
+            handleGameMessage(data);
         case 'newTeam':
         case 'newUser':
             fetchAndRefreshTeams();
+            break;
+    }
+}
+
+function handleGameMessage(data) {
+    switch (data) {
+        case 'next':
+        case 'continue':
+            clearBuzzers();
             break;
     }
 }

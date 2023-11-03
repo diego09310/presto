@@ -23,7 +23,10 @@
             <h2>Juego</h2>
             <div class="flex-wrapper">
                 <div id="game-controls">
-                    <button id="game-start" class="btn btn-success">Empezar</button>
+                    <button id="game-start" class="btn btn-success" 
+                        th:classappend="${(gameStatus == T(diego09310.presto.data.GameState).PLAYING ? 'hidden' : '') + (spotify == null ? 'hidden' : '')}">Empezar</button>
+                    <button id="game-continue" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Continuar</button>
+                    <button id="game-next" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Siguiente</button>
                     <!-- <button id="game-pause" class="btn btn-secondary">Pausa</button> -->
                 </div>
                 <div id="buzzers"></div>
@@ -42,23 +45,27 @@
                     <div id="song-name" th:text="${spotify.song}"></div>
                     <div id="artist" th:text="${spotify.artist}"></div>
                 </div>
-                <div class="controls">
+                <div class="controls mb-3">
                     <button id="prev-song" class="btn-sm"><i class="bi-rewind"></i></button>
                     <button id="play-pause-song" class="btn-sm"><i th:class="${spotify.playState == T(diego09310.presto.data.PlayState).PLAYING}? 'bi-pause' : 'bi-play'"></i></button>
                     <button id="next-song" class="btn-sm"><i class="bi-fast-forward"></i></button>
                 </div>
-                <select id="playlists" class="form-select">
-                    <th:block th:each="playlist : ${playlists}">
-                        <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
-                    </th:block>
-                </select>
+                <div class="row">
+                    <div class="col-auto">
+                        <span>Playlist:</span>
+                        <select id="playlists" class="form-select">
+                            <th:block th:each="playlist : ${playlists}">
+                                <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+                </div>
             </div>
 
         </div>
 
     </div>
     <th:block layout:fragment="scripts">
-        <script src="https://sdk.scdn.co/spotify-player.js"></script>
         <script th:src="@{/js/dashboard.js}"></script>
     </th:block>
 </body>

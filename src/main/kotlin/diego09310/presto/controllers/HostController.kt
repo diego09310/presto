@@ -52,6 +52,7 @@ class HostController(
         model["host"] = true
         model["spotify"] = spotifyService.getPlayerStatus()
         model["playlists"] = spotifyService.getPlaylists()
+        model["gameStatus"] = gameService.getGameState()
         return ModelAndView("pages/dashboard")
     }
 
@@ -75,8 +76,20 @@ class HostController(
 
     @GetMapping("/game/start")
     @ResponseBody
-    fun startGame() {
-        gameService.startGame()
+    fun startGame(@RequestParam playlist: String) {
+        gameService.startGame(playlist)
+    }
+
+    @GetMapping("/game/next")
+    @ResponseBody
+    fun nextSong() {
+        gameService.nextSong()
+    }
+
+    @GetMapping("/game/continue")
+    @ResponseBody
+    fun continueGame() {
+        gameService.continueGame()
     }
 
     @GetMapping("/game/pause")

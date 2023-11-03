@@ -41,6 +41,15 @@ class SpotifyService(
         }
     }
 
+    fun startPlayback(playlist: String) {
+        getSpotifyApi()?.startResumeUsersPlayback()?.context_uri("spotify:playlist:$playlist")?.build()?.execute()
+        enableShuffle()
+    }
+
+    fun enableShuffle() {
+        getSpotifyApi()?.toggleShuffleForUsersPlayback(true)?.build()?.execute()
+    }
+
     fun play() {
         val isPlaying = getSpotifyApi()?.informationAboutUsersCurrentPlayback?.build()?.execute()?.is_playing ?: return
         if (!isPlaying) {

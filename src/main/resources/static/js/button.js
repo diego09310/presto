@@ -5,13 +5,21 @@ function handleWebSocketMessage(type, data) {
             displayBuzzResults(data);
             break;
         case 'game':
-            if (data === "start") {
-                document.getElementById("buzz").disabled = false;
-                document.getElementById("clicked").classList.add("hidden");
-                clearBuzzers();
-            } else if (data === "pause") {
-                document.getElementById("buzz").disabled = true;
-            }
+            handleGameMessage(data);
+            break;
+    }
+}
+
+function handleGameMessage(data) {
+    switch (data) {
+        case 'next':
+        case 'continue':
+            document.getElementById("buzz").disabled = false;
+            document.getElementById("clicked").classList.add("hidden");
+            clearBuzzers();
+            break;
+        case 'pause':
+            document.getElementById("buzz").disabled = true;
             break;
     }
 }

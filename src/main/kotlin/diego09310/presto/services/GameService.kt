@@ -85,10 +85,22 @@ class GameService(
         webSocketsService.sendAll(MessageType.BUZZ_RESULTS.type, BuzzData(player.name, team.name, position))
     }
 
-    fun startGame() {
-        Game.buzzes.clear()
+    fun startGame(playlist: String) {
         Game.state = GameState.PLAYING
+        spotifyService.startPlayback(playlist)
         webSocketsService.sendAll(MessageType.GAME.type, "start")
+    }
+
+    fun nextSong() {
+        Game.buzzes.clear()
+        spotifyService.next()
+        webSocketsService.sendAll(MessageType.GAME.type, "next")
+    }
+
+    fun continueGame() {
+        Game.buzzes.clear()
+        spotifyService.play()
+        webSocketsService.sendAll(MessageType.GAME.type, "continue")
     }
 
     fun getGameState(): GameState {

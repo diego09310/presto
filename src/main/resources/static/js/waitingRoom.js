@@ -12,3 +12,4 @@ function handleWebSocketMessage(type, data) {
             break;
     }
 }
+

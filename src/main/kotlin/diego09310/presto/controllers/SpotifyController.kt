@@ -1,5 +1,6 @@
 package diego09310.presto.controllers
 
+import diego09310.presto.data.SpotifyPlayer
 import diego09310.presto.services.SpotifyService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,9 +30,9 @@ class SpotifyController(val spotifyService: SpotifyService) {
         spotifyService.next()
     }
 
-//    @GetMapping("/playlists")
-//    @ResponseBody
-//    fun getPlaylists(): Array<out PlaylistSimplified>? {
-//        return spotifyService.getPlaylists()
-//    }
+    @GetMapping("/status")
+    @ResponseBody
+    fun getPlayerStatus(): SpotifyPlayer? {
+        return spotifyService.getPlayerStatus()
+    }
 }

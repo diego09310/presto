@@ -22,3 +22,7 @@ function clearBuzzers() {
     document.getElementById("buzzers").innerHTML = "";
     buzzResults.length = 0;
 }
+
+const delay = (delayInms) => {
+    return new Promise(resolve => setTimeout(resolve, delayInms));
+};
