@@ -13,12 +13,13 @@ import java.time.Instant
 class SpotifyAuthenticationService(
     @Value("\${SPOTIFY_CLIENT_ID}") private val clientId: String,
     @Value("\${SPOTIFY_CLIENT_SECRET}") private val clientSecret: String,
+    @Value("\${SPOTIFY_CALLBACK_URL}") private val callbackUrl: String,
 ) {
     var log = LogManager.getLogger()!!
 
     var credentials: SpotifyAuthorizationCredentials? = null
 
-    private val redirectUri: URI = SpotifyHttpManager.makeUri("http://localhost:4000/host/spotifyCallback")
+    private val redirectUri: URI = SpotifyHttpManager.makeUri(callbackUrl)
 
     private var spotifyApi = SpotifyApi.Builder()
         .setClientId(clientId)
