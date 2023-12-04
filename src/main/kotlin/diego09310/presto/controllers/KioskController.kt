@@ -24,8 +24,9 @@ class KioskController(
     fun getKiosk(model: Model): String {
         model["teams"] = gameService.getTeams()
         val ip = networkUtil.getLocalIpAddress()
-        val address = "http://$ip:$port/"
-        model["qr"] = qrService.generateQrString(address)
+        val url = "http://$ip:$port/"
+        model["url"] = url
+        model["qr"] = qrService.generateQrString(url)
         return "pages/kiosk"
     }
 }

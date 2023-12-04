@@ -24,7 +24,8 @@
             <div class="flex-wrapper">
                 <div id="game-controls">
                     <button id="game-start" class="btn btn-success" 
-                        th:classappend="${(gameStatus == T(diego09310.presto.data.GameState).PLAYING ? 'hidden' : '') + (spotify == null ? 'hidden' : '')}">Empezar</button>
+                        th:classappend="${gameStatus == T(diego09310.presto.data.GameState).PLAYING ? 'hidden' : ''}"
+                        th:disabled="${spotify == null}">Empezar</button>
                     <button id="game-continue" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Continuar</button>
                     <button id="game-next" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Siguiente</button>
                     <!-- <button id="game-pause" class="btn btn-secondary">Pausa</button> -->
@@ -38,8 +39,8 @@
             <div th:if="${spotify == null}">Spotify no está reproduciendo nada</div>
             <div th:unless="${spotify == null}" class="spotify-wrapper">
                 <input type="checkbox" id="hide-spotify" />
-                <label id="hide-spotify-label" for="hide-spotify" style="width: 300px"><i class="bi-eye-slash-fill"></i></label>
-                <label id="show-spotify-label" for="hide-spotify" style="width: 300px"><i class="bi-eye-fill"></i></label>
+                <label id="hide-spotify-label" for="hide-spotify"><i class="bi-eye-slash-fill"></i></label>
+                <label id="show-spotify-label" for="hide-spotify"><i class="bi-eye-fill"></i></label>
                 <div id="spotify-info">
                     <img id="cover" th:src="${spotify.cover}" />
                     <div id="song-name" th:text="${spotify.song}"></div>

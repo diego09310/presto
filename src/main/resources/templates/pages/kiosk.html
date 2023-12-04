@@ -13,7 +13,7 @@
 <body>
     <div layout:fragment="content">
         <div id="qr">
-            <img th:src="@{'data:image/png;base64,'+${qr}}" />
+            <a th:href="${url}"><img th:src="@{'data:image/png;base64,'+${qr}}" /></a>
         </div>
         <div id="game-control" class="element mb-3">
             <h2>Podio</h2>

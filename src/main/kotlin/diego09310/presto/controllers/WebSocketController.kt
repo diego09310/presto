@@ -20,7 +20,7 @@ class WebSocketController(
 
     @MessageMapping("/buzz")
     fun buzz(message: BuzzMessage) {
-        log.info("Websocket message received: ${message.playerId}, ${message.teamId}")
+        log.debug("Websocket message received: ${message.playerId}, ${message.teamId}")
         gameService.buzz(message.playerId, message.teamId)
     }
 

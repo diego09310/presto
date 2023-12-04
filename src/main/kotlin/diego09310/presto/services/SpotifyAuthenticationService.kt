@@ -15,7 +15,7 @@ class SpotifyAuthenticationService(
     @Value("\${SPOTIFY_CLIENT_SECRET}") private val clientSecret: String,
     @Value("\${SPOTIFY_CALLBACK_URL}") private val callbackUrl: String,
 ) {
-    var log = LogManager.getLogger()!!
+    val log = LogManager.getLogger()!!
 
     var credentials: SpotifyAuthorizationCredentials? = null
 
@@ -28,7 +28,7 @@ class SpotifyAuthenticationService(
         .build()
 
     private val authorizationCodeUriRequest = spotifyApi.authorizationCodeUri()
-        .scope("app-remote-control streaming user-read-playback-state user-modify-playback-state user-read-currently-playing")
+        .scope("app-remote-control streaming user-read-playback-state user-modify-playback-state user-read-currently-playing playlist-read-private playlist-read-collaborative")
         .build()
 
     fun getAuthorizationCodeUri(): String {
