@@ -91,7 +91,7 @@ function handleGameMessage(data) {
 }
 
 async function refreshSpotify() {
-    await delay(500);
+    await delay(100);
     fetch('/spotify/status')
         .then(response => response.json())
         .then(data => {

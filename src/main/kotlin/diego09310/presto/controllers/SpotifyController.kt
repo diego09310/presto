@@ -30,6 +30,18 @@ class SpotifyController(val spotifyService: SpotifyService) {
         spotifyService.next()
     }
 
+    @GetMapping("/play")
+    @ResponseBody
+    fun play() {
+        spotifyService.play()
+    }
+
+    @GetMapping("/pause")
+    @ResponseBody
+    fun pause() {
+        spotifyService.pause()
+    }
+
     @GetMapping("/status")
     @ResponseBody
     fun getPlayerStatus(): SpotifyPlayer? {
