@@ -67,3 +67,15 @@ input[type=checkbox]:checked~#show-spotify-label {
 #artist {
     font-size: 1.1rem;
 }
+
+.teams-controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.result {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}

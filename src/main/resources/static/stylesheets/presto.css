@@ -8,6 +8,10 @@ input[type=text] {
     border-radius: 3px;
 }
 
+input[type=number] {
+    border-radius: 3px;
+}
+
 .container {
     margin-top: 10px;
     /* min-height: calc(100vh - 20px); */

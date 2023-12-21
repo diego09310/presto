@@ -30,6 +30,7 @@ class PlayerController(
     fun handleLogin(playerData: PlayerData, session: HttpSession): ModelAndView {
         if (session.getAttribute("playerData") != null) {
             // TODO: Get player and change the name but keep the id. Handle team
+            
         }
         val player = gameService.addPlayer(playerData.name, playerData.teamId)
         playerData.playerId = player.id

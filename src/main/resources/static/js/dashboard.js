@@ -75,6 +75,17 @@ function handleWebSocketMessage(type, data) {
     }
 }
 
+function displayBuzzResults(buzzResult) {
+    buzzResults.push(buzzResult);
+    buzzResults.sort((a, b) => a.position - b.position);
+
+    const buzzersEl = document.getElementById("buzzers");
+    buzzersEl.innerHTML = "";
+    buzzResults.forEach(result => buzzersEl.innerHTML 
+        += `<p class="result"><span><strong>${result.position}</strong>. ${result.player} (${result.team})</span>
+            <i class="bi bi-check"></i></p>`);
+}
+
 function handleGameMessage(data) {
     switch (data) {
         case 'start':

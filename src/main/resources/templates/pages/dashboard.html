@@ -8,16 +8,27 @@
 </head>
 <body>
     <div layout:fragment="content">
-        <div id="teams-control" class="element mb-3">
+        <div id="teams-wrapper" class="element mb-3">
             <div th:replace="~{fragments/teams}"></div>
-            <form id="addTeamForm" class="row align-items-center">
-                <div class="col-auto">
-                    <input type="text" id="teamName" class="form-control" placeholder="Equipo" required />
+            <div class="teams-controls">
+                <form id="addTeamForm" class="row align-items-center">
+                    <div class="col-auto">
+                        <input type="text" id="teamName" class="form-control" placeholder="Equipo" required />
+                    </div>
+                    <div class="col-auto">
+                        <input type="submit" id="addTeam" class="btn btn-primary" value="Añadir" />
+                    </div>
+                </form>
+                <div class="points row align-items-center">
+                    <div class="col-auto">
+                        <label for="points">Puntos:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" id="points" class="form-control" value="1" />
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <input type="submit" id="addTeam" class="btn btn-primary" value="Añadir" />
-                </div>
-            </form>
+            </div>
+
         </div>
         <div id="game-control" class="element mb-3">
             <h2>Juego</h2>
