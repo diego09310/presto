@@ -79,3 +79,7 @@ input[type=checkbox]:checked~#show-spotify-label {
     display: flex;
     justify-content: space-between;
 }
+
+.playlist {
+    display: flex;
+}

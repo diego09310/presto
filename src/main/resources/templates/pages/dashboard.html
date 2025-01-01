@@ -65,11 +65,15 @@
                 <div class="row">
                     <div class="col-auto">
                         <span>Playlist:</span>
-                        <select id="playlists" class="form-select">
-                            <th:block th:each="playlist : ${playlists}">
-                                <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
-                            </th:block>
-                        </select>
+                        <div class="playlist">
+                            <select id="playlists" class="form-select me-3">
+                                <option value="global">### Global ###</option>
+                                <th:block th:each="playlist : ${playlists}">
+                                    <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
+                                </th:block>
+                            </select>
+                            <input type="text" id="playlist-id" class="form-control" placeholder="Playlist ID" />
+                        </div>
                     </div>
                 </div>
             </div>

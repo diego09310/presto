@@ -37,12 +37,12 @@ class SpotifyService(
                 return function()
             } catch (ex: IllegalStateException) {
                 log.error("Spotify collision, retrying")
-                Thread.sleep(100)
+                Thread.sleep(200)
             } catch (ex: ForbiddenException) {
                 log.error("Tried to play/pause in wrong state")
                 return null
             } catch (ex: Exception) {
-                log.error("Spotify error: %s", ex)
+                log.error("Spotify error: {}", ex.message)
                 return null
             }
         }

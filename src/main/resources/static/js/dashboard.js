@@ -41,7 +41,12 @@ if (document.getElementsByClassName("spotify-wrapper").length > 0) {
 }
 
 document.getElementById("game-start").addEventListener('click', () => {
-    const playlistId = document.getElementById("playlists").value;
+    const playlistId = document.getElementById("playlists").value !== "global"
+            ? document.getElementById("playlists").value
+            : document.getElementById("playlist-id").value;
+    if (!playlistId) {
+        return;
+    }
     fetch(`/host/game/start?playlist=${playlistId}`);
 
     document.getElementById("game-start").classList.add("hidden");
@@ -94,6 +99,7 @@ function handleGameMessage(data) {
         case 'next':
             refreshSpotify();
             clearBuzzers();
+            break;
         case 'continue':
             setPauseLogo();
             clearBuzzers();
@@ -102,7 +108,7 @@ function handleGameMessage(data) {
 }
 
 async function refreshSpotify() {
-    await delay(100);
+    await delay(1000);
     fetch('/spotify/status')
         .then(response => response.json())
         .then(data => {
@@ -122,3 +128,12 @@ function setPlayLogo() {
 function setPauseLogo() {
     document.getElementById("play-pause-song").innerHTML = '<i class="bi-pause"></i>';
 }
+
+const playlists = document.getElementById("playlists");
+playlists.addEventListener('change', () => {
+    if (playlists.value === "global") {
+        document.getElementById("playlist-id").classList.remove("hidden");
+    } else {
+        document.getElementById("playlist-id").classList.add("hidden");
+    }
+});
