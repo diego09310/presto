@@ -5,7 +5,6 @@ import diego09310.presto.data.GameState
 import diego09310.presto.data.Player
 import diego09310.presto.data.Team
 import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
 import org.apache.logging.log4j.LogManager
 import org.springframework.stereotype.Service
 
@@ -67,6 +66,7 @@ class GameService(
         webSocketsService.sendAll(MessageType.NEW_USER.type, null)
     }
 
+    @Synchronized
     fun buzz(playerId: String, teamId: String) {
         val position = Game.buzzes.size + 1
         Game.buzzes.add(playerId)
@@ -74,12 +74,12 @@ class GameService(
             return
         }
         if (position == 1) {
-            spotifyService.pause()
+            spotifyService.asyncPause()
         }
         val team = getTeam(teamId)
         val player = team?.players?.find{it.id == playerId}
         if (player == null) {
-            log.error("Couldn't find player that buzzed. playerId: ${playerId}, teamId: ${teamId}")
+            log.error("Couldn't find player that buzzed. playerId: $playerId, teamId: $teamId")
             return
         }
         webSocketsService.sendAll(MessageType.BUZZ_RESULTS.type, BuzzData(player.name, team.name, position))

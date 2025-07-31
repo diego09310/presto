@@ -1,6 +1,9 @@
 package diego09310.presto.services
 
 import diego09310.presto.data.SpotifyPlayer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.apache.logging.log4j.LogManager
 import org.springframework.stereotype.Service
 import se.michaelthelin.spotify.SpotifyApi
@@ -79,6 +82,12 @@ class SpotifyService(
 
     fun pause() {
         execute { getSpotifyApi()?.pauseUsersPlayback()?.build()?.execute() }
+    }
+
+    fun asyncPause() {
+        CoroutineScope(Dispatchers.IO).launch {
+            execute { getSpotifyApi()?.pauseUsersPlayback()?.build()?.execute() }
+        }
     }
 
     fun previous() {
