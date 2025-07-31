@@ -35,7 +35,6 @@
             <div class="flex-wrapper">
                 <div id="game-controls">
                     <button id="game-start" class="btn btn-success" 
-                        th:classappend="${gameStatus == T(diego09310.presto.data.GameState).PLAYING ? 'hidden' : ''}"
                         th:disabled="${spotify == null}">Empezar</button>
                     <button id="game-continue" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Continuar</button>
                     <button id="game-next" class="btn btn-success" th:classappend="${gameStatus == T(diego09310.presto.data.GameState).WAITING ? 'hidden' : ''}">Siguiente</button>
@@ -67,7 +66,7 @@
                         <span>Playlist:</span>
                         <div class="playlist">
                             <select id="playlists" class="form-select me-3">
-                                <option value="global">### Global ###</option>
+                                <option selected value>Playlist:</option>
                                 <th:block th:each="playlist : ${playlists}">
                                     <option th:value="${playlist.id}" th:text="${playlist.name}"></option>
                                 </th:block>
